@@ -1,5 +1,6 @@
 package com.corporation_name.unit.action;
 
+import com.corporation_name.Game;
 import com.corporation_name.unit.Unit;
 
 public class AttackAction implements Action {
@@ -23,9 +24,9 @@ public class AttackAction implements Action {
     @Override
     public void execute(Unit targetUnit) {
 
-        System.out.println(initialUnit.getName() + " " + name + " " + targetUnit.getName());
+        Game.log(initialUnit.getName() + " " + name + ". " +
+                targetUnit.getName() + " понёс урон " + initialUnit.getPower() * damage + ".");
         targetUnit.changeHealth(initialUnit.getPower() * damage);
-        targetUnit.aliveValidate();
 
         initialUnit.setStandartPower();
 

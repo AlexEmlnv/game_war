@@ -1,10 +1,8 @@
 package com.corporation_name.squad;
 
+import com.corporation_name.Game;
 import com.corporation_name.unit.Race;
 import com.corporation_name.unit.Unit;
-import com.corporation_name.unit.elf.ElfArcher;
-import com.corporation_name.unit.elf.ElfMagician;
-import com.corporation_name.unit.elf.ElfWarrior;
 import com.corporation_name.unit.orc.OrcArcher;
 import com.corporation_name.unit.orc.OrcMagician;
 import com.corporation_name.unit.orc.OrcWarrior;
@@ -21,7 +19,7 @@ public class OrcSquadFactory implements SquadFactory {
     public Squad createSquad() {
         Squad squad = new Squad();
         squad.setRace(Race.ORC);
-        squad.setSquadName("Банда орков");
+        squad.setName("Банда орков");
         List<Unit> list = new ArrayList<>();
 
         for (int i = 0; i < MAGICIAN_COUNT; i++) {
@@ -38,6 +36,8 @@ public class OrcSquadFactory implements SquadFactory {
         }
 
         squad.setWarriors(list);
+
+        Game.logTitle("Создана " + squad.getName() + ", количество бойцов " + squad.getWarriors().size());
 
         return squad;
     }

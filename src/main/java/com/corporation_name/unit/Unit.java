@@ -1,5 +1,6 @@
 package com.corporation_name.unit;
 
+import com.corporation_name.Game;
 import com.corporation_name.unit.action.Action;
 import com.corporation_name.utils.RandomUtil;
 
@@ -40,12 +41,8 @@ public abstract class Unit {
         }
     }
 
-    public void aliveValidate() {
-        if (health <= 0.0) {
-            System.out.println( name + " погиб!");
-        } else {
-            System.out.println( "У " + name + " осталось жизни на " + health + " НР");
-        }
+    public boolean isAlive() {
+        return (health > 0.0);
     }
 
     public void changeHealth(double damage) {

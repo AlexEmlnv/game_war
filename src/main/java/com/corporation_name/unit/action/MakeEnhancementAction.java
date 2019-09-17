@@ -1,5 +1,6 @@
 package com.corporation_name.unit.action;
 
+import com.corporation_name.Game;
 import com.corporation_name.unit.Unit;
 
 public class MakeEnhancementAction implements Action{
@@ -20,8 +21,7 @@ public class MakeEnhancementAction implements Action{
 
     @Override
     public void execute( Unit targetUnit ) {
-
-        System.out.println(initialUnit.getName() + " " + name + " " + targetUnit.getName());
+        Game.log( initialUnit.getName() + " " + name + ". " + targetUnit.getName() + " получил улучшение.");
         targetUnit.setPrivilegedPower();
 
     }

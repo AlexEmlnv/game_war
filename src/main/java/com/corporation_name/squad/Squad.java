@@ -9,7 +9,7 @@ import java.util.List;
 public class Squad {
 
     private Race race;
-    private String squadName;
+    private String name;
     private List<Unit> warriors;
 //    private Squad alienSquad;
 
@@ -21,12 +21,12 @@ public class Squad {
         this.race = race;
     }
 
-    public String getSquadName() {
-        return squadName;
+    public String getName() {
+        return name;
     }
 
-    public void setSquadName(String squadName) {
-        this.squadName = squadName;
+    public void setName( String name ) {
+        this.name = name;
     }
 
     public List<Unit> getWarriors() {
@@ -48,16 +48,43 @@ public class Squad {
 
     public int getWarriorsCount() { return warriors.size(); }
 
-    public Unit getRandomWarrior() { return null; }
+    public Unit getRandomWarrior() {
+        Unit unit = null;
+        unit = getPrivelegedWarrior();
+        if (unit == null) unit = getNotPrivelegedWarrior();
 
-    public Unit getRandomOtherWarrior(Unit keyUnit) { return null; }
+        return unit;
+    }
 
-//    public void step() {
-//
-//        Unit unit =  getRandomUnit();
-//        Action action = unit.getRandomAction();
-//        if (action.isForAlien()) {
-//            alienSqued.getRandomUnit();
-//        }
+    private Unit getPrivelegedWarrior() {
+        for (Unit unit: warriors){
+            if (unit.getPower() == 1.5) return unit;
+        }
+
+        return null;
+    }
+
+    private Unit getNotPrivelegedWarrior() {
+        for (Unit unit: warriors){
+            if (unit.getPower() != 1.5) return unit;
+        }
+
+        return null;
+    }
+
+    public Unit getRandomOtherWarrior(Unit keyUnit) {
+
+        for (Unit unit : warriors) {
+            if (!unit.getName().equals( keyUnit.getName() )) return unit;
+        }
+
+        return null;
+    }
+
+    public void removeWarrior(Unit unit) {
+
+        warriors.remove( unit );
+        Game.logTitle( unit.getName() + " погиб!" );
+    }
 
 }
