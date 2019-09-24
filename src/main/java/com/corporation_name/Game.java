@@ -16,6 +16,14 @@ public class Game {
     private Squad lightSquad;
     private Squad darkSquad;
 
+    void setLightSquad(Squad lightSquad) {
+        this.lightSquad = lightSquad;
+    }
+
+    void setDarkSquad(Squad darkSquad) {
+        this.darkSquad = darkSquad;
+    }
+
     /**
      * Само действие игры.
      */
@@ -36,12 +44,12 @@ public class Game {
      * Проверка на возможности продолжения игры.
      * @return можно ли играть дальше
      */
-    private boolean isMayGoOn() {
+    boolean isMayGoOn() {
 
         return (lightSquad.getWarriorsCount() != 0 && darkSquad.getWarriorsCount() != 0);
     }
 
-    private void step(final Squad initialSquad, final Squad targetSquad) {
+    void step(final Squad initialSquad, final Squad targetSquad) {
 
         Unit srcUnit = initialSquad.getRandomWarrior();
         Unit targetUnit = null;

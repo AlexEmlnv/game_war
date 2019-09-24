@@ -87,15 +87,15 @@ public abstract class Unit {
         return power;
     }
 
-    public boolean isPrivileged() {
+    public final boolean isPrivileged() {
         return (power == 1.5);
     }
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public double getHealth() {
+    public final double getHealth() {
         return health;
     }
 
@@ -115,7 +115,7 @@ public abstract class Unit {
         this.action1 = action1;
     }
 
-    public void setAction2(final Action action2) {
-        this.action2 = action2;
+    public void setAction2(final Action action) {
+        this.action2 = action;
     }
 }
