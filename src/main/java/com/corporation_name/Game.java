@@ -5,76 +5,45 @@ import com.corporation_name.unit.action.Action;
 import com.corporation_name.unit.Race;
 import com.corporation_name.unit.Unit;
 import com.corporation_name.utils.RandomUtil;
-import org.apache.log4j.Logger;
-import org.apache.log4j.Priority;
+
+import static com.corporation_name.utils.LoggerUtil.logTitle;
 
 public class Game {
 
-    private static Game instance;
-    private static final Logger logger = Logger.getLogger("Game");
-    private static int stepCount = 1;
     private Squad lightSquad;
     private Squad darkSquad;
 
-
-    private Game() {
-
-    }
-
-    public static Game getInstance() {
-        if (instance==null) {
-            instance = new Game();
-        }
-
-        return instance;
-    }
 
     public void play() {
 
         start();
 
         while (isMayGoOn()) {
-            step(lightSquad);
+            step(lightSquad, darkSquad);
 
-            step(darkSquad);
+            step(darkSquad, lightSquad);
         }
 
         end();
 
     }
 
-    public static void log(String message) {
-        logger.log( Priority.INFO, stepCount++ + ". " + message);
-    }
-
-    public static void logTitle(String message) {
-        logger.log( Priority.INFO, message);
-    }
-
-    public Squad getLightSquad() {
-        return lightSquad;
-    }
-
-    public Squad getDarkSquad() {
-        return darkSquad;
-    }
-
     private boolean isMayGoOn() {
 
-        return (lightSquad.getWarriorsCount() != 0 && darkSquad.getWarriorsCount() !=0 && stepCount<=200);
+        return (lightSquad.getWarriorsCount() != 0 && darkSquad.getWarriorsCount() !=0 );
     }
 
-    private void step(Squad squad) {
+    private void step(Squad initialSquad, Squad targetSquad) {
 
-        Unit srcUnit = squad.getRandomWarrior();
+        Unit srcUnit = initialSquad.getRandomWarrior();
         Unit targetUnit= null;
 
         Action action = srcUnit.getRandomAction();
 
         if (action.isForAlien()) {
-            targetUnit = squad.getAlienSquad().getRandomWarrior();
+            targetUnit = targetSquad.getRandomWarrior();
         } else {
-            targetUnit = squad.getRandomOtherWarrior(srcUnit);
+            targetUnit = initialSquad.getRandomOtherWarrior(srcUnit);
         }
 
         if (targetUnit != null) {
@@ -82,7 +51,7 @@ public class Game {
             action.execute(targetUnit);
 
             if (action.isForAlien() && !targetUnit.isAlive()) {
-                squad.getAlienSquad().removeWarrior( targetUnit );
+                targetSquad.removeWarrior( targetUnit );
             }
         }
     }
@@ -93,10 +62,10 @@ public class Game {
         logTitle( "\n\n" + "----------------------------- Начало новой игры -----------------------------------");
 
         SquadFactory squadFactory = getFactoryByRace(RandomUtil.getRandomGoodRace());
-        lightSquad = squadFactory.createSquad();
+        lightSquad = squadFactory.createSquad(1,3,4);
 
         squadFactory = getFactoryByRace(RandomUtil.getRandomBadRace());
-        darkSquad = squadFactory.createSquad();
+        darkSquad = squadFactory.createSquad(1,3,4);
 
 
         logTitle("Сражаются " + lightSquad.getName() + " и " + darkSquad.getName() + "!" + "\n");

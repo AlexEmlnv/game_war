@@ -3,6 +3,8 @@ package com.corporation_name.unit.action;
 import com.corporation_name.Game;
 import com.corporation_name.unit.Unit;
 
+import static com.corporation_name.utils.LoggerUtil.log;
+
 public class MakeEnhancementAction implements Action{
 
     private Unit initialUnit;
@@ -21,7 +23,7 @@ public class MakeEnhancementAction implements Action{
 
     @Override
     public void execute( Unit targetUnit ) {
-        Game.log( initialUnit.getName() + " " + name + ". " + targetUnit.getName() + " получил улучшение.");
+        log( initialUnit.getName() + " " + name + ". " + targetUnit.getName() + " получил улучшение.");
         targetUnit.setPrivilegedPower();
 
     }

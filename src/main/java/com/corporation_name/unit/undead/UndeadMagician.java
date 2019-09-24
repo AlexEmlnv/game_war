@@ -5,9 +5,12 @@ import com.corporation_name.unit.action.MakeDegradationAction;
 import com.corporation_name.unit.Race;
 import com.corporation_name.unit.Unit;
 
+/**
+ * Класс для производства экземпляров некромантов-нежитей.
+ */
 public class UndeadMagician  extends Unit {
 
-    public UndeadMagician(String name) {
+    public UndeadMagician(final String name) {
 
         super(Race.UNDEAD, name);
         this.setAction1(new MakeDegradationAction(this, "насылает недуг"));

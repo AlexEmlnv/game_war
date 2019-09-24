@@ -15,7 +15,7 @@ public class SquadTest {
 
     @Before
     public void setUp() throws Exception {
-        squad = (new ElfSquadFactory()).createSquad();
+        squad = (new ElfSquadFactory()).createSquad(1, 3, 4);
     }
 
     @Test

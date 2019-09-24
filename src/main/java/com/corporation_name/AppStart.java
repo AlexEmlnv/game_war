@@ -4,6 +4,7 @@ public class AppStart {
 
     public static void main(String[] args) {
 
-        Game.getInstance().play();
+        Game game = new Game();
+        game.play();
     }
 }

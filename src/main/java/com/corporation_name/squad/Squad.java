@@ -1,10 +1,11 @@
 package com.corporation_name.squad;
 
-import com.corporation_name.Game;
 import com.corporation_name.unit.Race;
 import com.corporation_name.unit.Unit;
 
 import java.util.List;
+
+import static com.corporation_name.utils.LoggerUtil.logTitle;
 
 public class Squad {
 
@@ -37,26 +38,17 @@ public class Squad {
         this.warriors = warriors;
     }
 
-    public Squad getAlienSquad() {
-
-        if (race == Race.ELF || race == Race.HUMAN ) {
-            return Game.getInstance().getDarkSquad();
-        } else {
-            return Game.getInstance().getLightSquad();
-        }
-    }
-
     public int getWarriorsCount() { return warriors.size(); }
 
     public Unit getRandomWarrior() {
         Unit unit = null;
-        unit = getPrivelegedWarrior();
-        if (unit == null) unit = getNotPrivelegedWarrior();
+        unit = getPrivilegedWarrior();
+        if (unit == null) unit = getNotPrivilegedWarrior();
 
         return unit;
     }
 
-    private Unit getPrivelegedWarrior() {
+    private Unit getPrivilegedWarrior() {
         for (Unit unit: warriors){
             if (unit.getPower() == 1.5) return unit;
         }
@@ -64,7 +56,7 @@ public class Squad {
         return null;
     }
 
-    private Unit getNotPrivelegedWarrior() {
+    private Unit getNotPrivilegedWarrior() {
         for (Unit unit: warriors){
             if (unit.getPower() != 1.5) return unit;
         }
@@ -84,7 +76,7 @@ public class Squad {
     public void removeWarrior(Unit unit) {
 
         warriors.remove( unit );
-        Game.logTitle( unit.getName() + " погиб!" );
+        logTitle( unit.getName() + " погиб!" );
     }
 
 }

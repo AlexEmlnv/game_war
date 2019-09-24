@@ -11,7 +11,7 @@ public class OrcSquadFactoryTest {
 
         SquadFactory squadFactory= new OrcSquadFactory();
 
-        Squad actualSquad = squadFactory.createSquad();
+        Squad actualSquad = squadFactory.createSquad(1, 3, 4);
 
         assertEquals("Банда орков", actualSquad.getName());
 

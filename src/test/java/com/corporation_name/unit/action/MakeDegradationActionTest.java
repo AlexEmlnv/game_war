@@ -31,7 +31,7 @@ public class MakeDegradationActionTest {
 
         makeDegradationAction.execute(targetUnit);
 
-        verify(targetUnit, times(1)).setStandartPower();
+        verify(targetUnit, times(1)).setStandardPower();
 
     }
 }

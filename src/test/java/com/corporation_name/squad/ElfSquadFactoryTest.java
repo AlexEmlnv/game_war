@@ -12,7 +12,7 @@ public class ElfSquadFactoryTest {
 
         SquadFactory squadFactory= new ElfSquadFactory();
 
-        Squad actualSquad = squadFactory.createSquad();
+        Squad actualSquad = squadFactory.createSquad(1, 3, 4);
 
         Assert.assertEquals("Команда эльфов", actualSquad.getName() );
 

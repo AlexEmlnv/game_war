@@ -2,12 +2,15 @@ package com.corporation_name.utils;
 
 import com.corporation_name.unit.Race;
 
+/**
+ * Утилита для генерации случайных данных (чисел, enum и т.д).
+ */
 public class RandomUtil {
 
     /**
-     * Получение или Race.ELF или Race.HUMAN
+     * Получение или Race.ELF или Race.HUMAN.
      *
-     * @return
+     * @return одну из светлых рас
      */
     public static Race getRandomGoodRace() {
         if (getRandomOneOrZero() == 1) {
@@ -19,9 +22,9 @@ public class RandomUtil {
     }
 
     /**
-     * Получение или Race.ORC или Race.UNDEAD
+     * Получение или Race.ORC или Race.UNDEAD.
      *
-     * @return
+     * @return одну из тёмных рас
      */
     public static Race getRandomBadRace() {
         if (getRandomOneOrZero() == 1) {
@@ -32,9 +35,9 @@ public class RandomUtil {
     }
 
     /**
-     * Получение или 1 или 0
+     * Получение или 1 или 0.
      *
-     * @return
+     * @return 1/0
      */
     public static int getRandomOneOrZero() {
 

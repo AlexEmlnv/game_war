@@ -43,7 +43,7 @@ public class ElfArcherTest {
         elfArcher.setPrivilegedPower();
         assertTrue( elfArcher.getPower() == 1.5 );
 
-        elfArcher.setStandartPower();
+        elfArcher.setStandardPower();
         assertTrue( elfArcher.getPower() == 1.0 );
 
 
@@ -60,7 +60,7 @@ public class ElfArcherTest {
     @Test
     public void setBrokentPower() {
 
-        elfArcher.setBrokentPower();
+        elfArcher.setBrokenPower();
 
         assertTrue( elfArcher.getPower() == 0.5 );
     }

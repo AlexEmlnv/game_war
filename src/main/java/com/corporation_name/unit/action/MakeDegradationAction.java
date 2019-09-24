@@ -1,7 +1,8 @@
 package com.corporation_name.unit.action;
 
-import com.corporation_name.Game;
 import com.corporation_name.unit.Unit;
+
+import static com.corporation_name.utils.LoggerUtil.log;
 
 public class MakeDegradationAction implements Action{
 
@@ -22,11 +23,11 @@ public class MakeDegradationAction implements Action{
     @Override
     public void execute( Unit targetUnit ) {
 
-        Game.log(initialUnit.getName() + " " + name + ". " + targetUnit.getName() + " снизил свою силу.");
+        log(initialUnit.getName() + " " + name + ". " + targetUnit.getName() + " снизил свою силу.");
         if (targetUnit.getPower() == 1.5) {
-            targetUnit.setStandartPower();
+            targetUnit.setStandardPower();
         } else if (targetUnit.getPower() == 1.0) {
-            targetUnit.setBrokentPower();
+            targetUnit.setBrokenPower();
         }
 
     }

@@ -1,7 +1,8 @@
 package com.corporation_name.unit.action;
 
-import com.corporation_name.Game;
 import com.corporation_name.unit.Unit;
+
+import static com.corporation_name.utils.LoggerUtil.log;
 
 public class AttackAction implements Action {
 
@@ -24,11 +25,11 @@ public class AttackAction implements Action {
     @Override
     public void execute(Unit targetUnit) {
 
-        Game.log(initialUnit.getName() + " " + name + ". " +
+        log(initialUnit.getName() + " " + name + ". " +
                 targetUnit.getName() + " понёс урон " + initialUnit.getPower() * damage + ".");
         targetUnit.changeHealth(initialUnit.getPower() * damage);
 
-        initialUnit.setStandartPower();
+        initialUnit.setStandardPower();
 
     }
 }

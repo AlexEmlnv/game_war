@@ -1,9 +1,11 @@
 package com.corporation_name.unit;
 
-import com.corporation_name.Game;
 import com.corporation_name.unit.action.Action;
 import com.corporation_name.utils.RandomUtil;
 
+/**
+ * Абстрактная боевая единица (собраны все общие свойства и поведения для реальных бойцов).
+ */
 public abstract class Unit {
 
     private Race race;
@@ -13,14 +15,14 @@ public abstract class Unit {
     private Action action1;
     private Action action2;
 
-    public Unit(Race race, String name, Action action1, Action action2) {
+    public Unit(final Race race, final String name, final Action action1, final Action action2) {
         this.race = race;
         this.name = name;
         this.action1 = action1;
         this.action2 = action2;
     }
 
-    public Unit(Race race, String name) {
+    public Unit(final Race race, final String name) {
         this.race = race;
         this.name = name;
     }
@@ -33,6 +35,10 @@ public abstract class Unit {
         return action2;
     }
 
+    /**
+     * Получение в случайном порядке действия (либо Action1 либо Action2).
+     * @return само действия
+     */
     public Action getRandomAction() {
         if (RandomUtil.getRandomOneOrZero() == 1) {
             return getAction1();
@@ -41,19 +47,27 @@ public abstract class Unit {
         }
     }
 
+    /**
+     * Проверка живой ли боец.
+     * @return true или false
+     */
     public boolean isAlive() {
         return (health > 0.0);
     }
 
-    public void changeHealth(double damage) {
+    /**
+     * Нанесение урона жизни бойцу на размер damage.
+     * @param damage размер урона жизни бойцу
+     */
+    public void changeHealth(final double damage) {
         this.health = this.health - damage;
     }
 
-    public void setPower(double power) {
+    public void setPower(final double power) {
         this.power = power;
     }
 
-    public void setStandartPower() {
+    public void setStandardPower() {
         this.power = 1.0;
     }
 
@@ -61,7 +75,7 @@ public abstract class Unit {
         this.power = 1.5;
     }
 
-    public void setBrokentPower() {
+    public void setBrokenPower() {
         this.power = 0.5;
     }
 
@@ -85,23 +99,23 @@ public abstract class Unit {
         return health;
     }
 
-    public void setRace(Race race) {
+    public void setRace(final Race race) {
         this.race = race;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
-    public void setHealth(double health) {
+    public void setHealth(final double health) {
         this.health = health;
     }
 
-    public void setAction1(Action action1) {
+    public void setAction1(final Action action1) {
         this.action1 = action1;
     }
 
-    public void setAction2(Action action2) {
+    public void setAction2(final Action action2) {
         this.action2 = action2;
     }
 }

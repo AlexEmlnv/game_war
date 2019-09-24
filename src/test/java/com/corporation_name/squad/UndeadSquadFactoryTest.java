@@ -11,7 +11,7 @@ public class UndeadSquadFactoryTest {
 
         SquadFactory squadFactory= new UndeadSquadFactory();
 
-        Squad actualSquad = squadFactory.createSquad();
+        Squad actualSquad = squadFactory.createSquad(1, 3, 4);
 
         assertEquals("Банда нежити", actualSquad.getName());
 
