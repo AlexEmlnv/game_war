@@ -8,12 +8,17 @@ import com.corporation_name.utils.RandomUtil;
 
 import static com.corporation_name.utils.LoggerUtil.logTitle;
 
+/**
+ * Класс реализующий общую логику игры.
+ */
 public class Game {
 
     private Squad lightSquad;
     private Squad darkSquad;
 
-
+    /**
+     * Само действие игры.
+     */
     public void play() {
 
         start();
@@ -25,18 +30,21 @@ public class Game {
         }
 
         end();
-
     }
 
+    /**
+     * Проверка на возможности продолжения игры.
+     * @return можно ли играть дальше
+     */
     private boolean isMayGoOn() {
 
-        return (lightSquad.getWarriorsCount() != 0 && darkSquad.getWarriorsCount() !=0 );
+        return (lightSquad.getWarriorsCount() != 0 && darkSquad.getWarriorsCount() != 0);
     }
 
-    private void step(Squad initialSquad, Squad targetSquad) {
+    private void step(final Squad initialSquad, final Squad targetSquad) {
 
         Unit srcUnit = initialSquad.getRandomWarrior();
-        Unit targetUnit= null;
+        Unit targetUnit = null;
 
         Action action = srcUnit.getRandomAction();
 
@@ -51,7 +59,7 @@ public class Game {
             action.execute(targetUnit);
 
             if (action.isForAlien() && !targetUnit.isAlive()) {
-                targetSquad.removeWarrior( targetUnit );
+                targetSquad.removeWarrior(targetUnit);
             }
         }
     }
@@ -59,21 +67,18 @@ public class Game {
 
     private void start() {
 
-        logTitle( "\n\n" + "----------------------------- Начало новой игры -----------------------------------");
+        logTitle("\n\n" + "----------------------------- Начало новой игры -----------------------------------");
 
         SquadFactory squadFactory = getFactoryByRace(RandomUtil.getRandomGoodRace());
-        lightSquad = squadFactory.createSquad(1,3,4);
+        lightSquad = squadFactory.createSquad(1, 3, 4);
 
         squadFactory = getFactoryByRace(RandomUtil.getRandomBadRace());
-        darkSquad = squadFactory.createSquad(1,3,4);
-
+        darkSquad = squadFactory.createSquad(1, 3, 4);
 
         logTitle("Сражаются " + lightSquad.getName() + " и " + darkSquad.getName() + "!" + "\n");
-
-
     }
 
-    private SquadFactory getFactoryByRace(Race race) {
+    private SquadFactory getFactoryByRace(final Race race) {
 
         SquadFactory resSquadFactory = null;
 
@@ -92,7 +97,7 @@ public class Game {
                 resSquadFactory = new UndeadSquadFactory();
                 break;
             default:
-                logTitle("ERROR : Неподдерживаемая раса: " + race  );
+                logTitle("ERROR : Неподдерживаемая раса: " + race);
                 throw new RuntimeException("Неподдерживаемая раса: " + race);
         }
 
@@ -104,21 +109,16 @@ public class Game {
         if (lightSquad.getWarriorsCount() == 0) {
 
             logTitle("\n" + lightSquad.getName() + " проиграла, все бойцы погибли!");
-
         } else if (darkSquad.getWarriorsCount() == 0) {
 
             logTitle("\n" + darkSquad.getName() + " проиграла, все бойцы погибли!");
-
         } else {
 
             logTitle("\n" + "Пока бой продолжается!");
         }
 
-        logTitle(lightSquad.getName() + ": " + lightSquad.getWarriorsCount() + " живых, " +
-            darkSquad.getName() + ": " + darkSquad.getWarriorsCount() + " живых. ");
-        logTitle( "----------------------------- Конец игры -----------------------------------");
-
-
+        logTitle(lightSquad.getName() + ": " + lightSquad.getWarriorsCount() + " живых, "
+            + darkSquad.getName() + ": " + darkSquad.getWarriorsCount() + " живых. ");
+        logTitle("----------------------------- Конец игры -----------------------------------");
     }
-
 }

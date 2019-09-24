@@ -4,8 +4,12 @@ import com.corporation_name.unit.action.AttackAction;
 import com.corporation_name.unit.Race;
 import com.corporation_name.unit.Unit;
 
+/**
+ * Класс для производства экземпляров воинов-эльфов.
+ */
 public class ElfWarrior extends Unit {
-    public ElfWarrior(String name) {
+
+    public ElfWarrior(final String name) {
 
         super(Race.ELF, name);
         this.setAction1(new AttackAction(this, "атакует мечом", 15.0));

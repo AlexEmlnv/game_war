@@ -11,9 +11,19 @@ import java.util.List;
 
 import static com.corporation_name.utils.LoggerUtil.logTitle;
 
+/**
+ * Абстрактная фабрика создания отряда эльфов.
+ */
 public class ElfSquadFactory implements SquadFactory {
 
-    public Squad createSquad(int magicianCount, int archerCount, int warriorCount) {
+    /**
+     * @param magicianCount - количество магов
+     * @param archerCount   - количество лучников
+     * @param warriorCount  - количество простых воинов
+     * @return отряд эльфов
+     */
+    public Squad createSquad(final int magicianCount, final int archerCount, final int warriorCount) {
+
         Squad squad = new Squad();
         squad.setRace(Race.ELF);
         squad.setName("Команда эльфов");

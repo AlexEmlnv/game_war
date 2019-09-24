@@ -5,9 +5,12 @@ import com.corporation_name.unit.action.MakeEnhancementAction;
 import com.corporation_name.unit.Race;
 import com.corporation_name.unit.Unit;
 
+/**
+ * Класс для производства экземпляров магов-людей.
+ */
 public class HumanMagician extends Unit {
 
-    public HumanMagician(String name) {
+    public HumanMagician(final String name) {
 
         super(Race.HUMAN, name);
         this.setAction1(new MakeEnhancementAction(this, "накладывает улучшение"));

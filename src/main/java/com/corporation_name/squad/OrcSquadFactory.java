@@ -11,9 +11,19 @@ import java.util.List;
 
 import static com.corporation_name.utils.LoggerUtil.logTitle;
 
+/**
+ * Абстрактная фабрика создания отряда орков.
+ */
 public class OrcSquadFactory implements SquadFactory {
 
-    public Squad createSquad(int magicianCount, int archerCount, int warriorCount) {
+    /**
+     * Создание отряда орков.
+     * @param magicianCount - количество шаманов
+     * @param archerCount - количество лучников
+     * @param warriorCount - количество гоблинов
+     * @return отряд орков
+     */
+    public Squad createSquad(final int magicianCount, final int archerCount, final int warriorCount) {
         Squad squad = new Squad();
         squad.setRace(Race.ORC);
         squad.setName("Банда орков");

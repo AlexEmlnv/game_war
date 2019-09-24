@@ -11,9 +11,20 @@ import java.util.List;
 
 import static com.corporation_name.utils.LoggerUtil.logTitle;
 
+/**
+ * Абстрактная фабрика создания отряда людей.
+ */
 public class HumanSquadFactory implements SquadFactory {
 
-    public Squad createSquad(int magicianCount, int archerCount, int warriorCount) {
+    /**
+     * Создание отряда людей.
+     * @param magicianCount - количество магов
+     * @param archerCount - количество арбалетчиков
+     * @param warriorCount - количество простых воинов
+     * @return отряд людей
+     */
+    public Squad createSquad(final int magicianCount, final int archerCount, final int warriorCount) {
+
         Squad squad = new Squad();
         squad.setRace(Race.HUMAN);
         squad.setName("Команда людей");

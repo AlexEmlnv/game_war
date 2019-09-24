@@ -4,24 +4,36 @@ import com.corporation_name.unit.Unit;
 
 import static com.corporation_name.utils.LoggerUtil.log;
 
-public class MakeDegradationAction implements Action{
+/**
+ * Класс для реализациии действия по наложению ухудшения на воина из чужого отряда.
+ */
+public class MakeDegradationAction implements Action {
 
     private Unit initialUnit;
     private String name;
 
-    public MakeDegradationAction(Unit initialUnit, String name ) {
+    public MakeDegradationAction(final Unit initialUnit, final String name) {
+
         this.initialUnit = initialUnit;
         this.name = name;
     }
 
+    /**
+     * Направление действия (на своего или на чужого).
+     *
+     * @return на чужого
+     */
     @Override
     public boolean isForAlien() {
 
         return true;
     }
 
+    /**
+     * Логика самого действия.
+     */
     @Override
-    public void execute( Unit targetUnit ) {
+    public void execute(final Unit targetUnit) {
 
         log(initialUnit.getName() + " " + name + ". " + targetUnit.getName() + " снизил свою силу.");
         if (targetUnit.getPower() == 1.5) {
@@ -29,7 +41,5 @@ public class MakeDegradationAction implements Action{
         } else if (targetUnit.getPower() == 1.0) {
             targetUnit.setBrokenPower();
         }
-
     }
-
 }
